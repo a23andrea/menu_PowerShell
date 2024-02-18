@@ -5,11 +5,11 @@ $resp = 0
 while ($resp -ne 6){
 
     ("Menú, elixe unha opción: ")
-    ("1) Crear un directorio")
-    ("2) Comprobar o contido do directorio")
+    ("1) Crear un cartafol")
+    ("2) Comprobar o contido do cartafol actual")
     ("3) Calculadora")
     ("4) Abrir o editor de texto")
-    ("5) Borrar un directorio/arquivo")
+    ("5) Borrar un cartafol/arquivo")
     ("6) Sair")
     ("")
 
@@ -21,17 +21,18 @@ while ($resp -ne 6){
 
     switch($resp){
         
-        1.{("Escribe o nome do directorio que queres crear:")
+        1.{("Escriba o nome do cartafol que quera crear:")
             $nomeDir1 = Read-Host("Nome")
 
-            ("Escribe a ruta relativa do directorio que queres crear:")
+            ("Escriba a ruta relativa do cartafol que quera crear:")
+            ("(Se é no cartafol actual, simplemente prema enter)")
             $rutaDir1 = Read-Host("Ruta")
             
             clear
             
             New-Item -Path $rutaDir1$nomeDir1 -ItemType Directory
 
-            ("Directorio creado con éxito")
+            ("Cartafol creado con éxito")
             Read-Host("Prema enter para volver ao menú")}
 
 
@@ -41,7 +42,7 @@ while ($resp -ne 6){
            Read-Host("Prema enter para volver ao menú")}
 
 
-        3.{("Que operacion queres realizar?")
+        3.{("Que operacion quere realizar?")
            ("1) Suma")
            ("2) Resta")
            ("3) Multiplicación")
@@ -75,7 +76,7 @@ while ($resp -ne 6){
 
                 clear
 
-                $num3 = $num1 + $num2
+                $num3 = [int]$num1 + [int]$num2
 
                 ($num1 + " + " + $num2 + " = " + $num3)
 
@@ -94,7 +95,7 @@ while ($resp -ne 6){
 
                 clear
 
-                $num3 = $num1 - $num2
+                $num3 = [int]$num1 - [int]$num2
 
                 ($num1 + " - " + $num2 + " = " + $num3)
 
@@ -113,7 +114,7 @@ while ($resp -ne 6){
 
                 clear
 
-                $num3 = $num1 * $num2
+                $num3 = [int]$num1 * [int]$num2
 
                 ($num1 + " x " + $num2 + " = " + $num3)
 
@@ -141,7 +142,7 @@ while ($resp -ne 6){
                 
                 }
 
-                $num3 = $num1 / $num2
+                $num3 = [int]$num1 / [int]$num2
 
                 ($num1 + " / " + $num2 + " = " + $num3)
 
@@ -149,6 +150,38 @@ while ($resp -ne 6){
            
            
            }
+           
+           }
+
+
+
+
+        4.{("Escriba o nome do arquivo que quera crear (con extensión):")
+            $nomeFile1 = Read-Host("Nome")
+
+            ("Escriba a ruta relativa do arquivo que quera crear:")
+            ("(Se é no cartafol actual, simplemente prema enter)")
+            $rutaDirFile1 = Read-Host("Ruta")
+            
+            clear
+            
+            New-Item -Path $rutaDirFile1$nomeFile1 -ItemType File
+            
+            notepad.exe $rutaDirFile1$nomeFile1
+            
+            Read-Host("Prema enter para volver ao menú")}
+
+
+
+
+        5.{$ruta = Read-Host("Escriba a ruta absoluta do cartafol que quera eliminar")
+
+           clear
+           
+           Remove-Item -Path $ruta
+           
+           ("Arquivo/cartafol eliminado correctamente")
+           Read-Host("Prema enter para volver ao menú")
            
            }
 
